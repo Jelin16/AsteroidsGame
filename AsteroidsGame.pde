@@ -27,6 +27,7 @@ public void draw()
   for(int i = 0; i < rock.size(); i++){
   rock.get(i).show();
   rock.get(i).move();
+  }
   ship.show();
   ship.move();
   if(wPressed == true){
