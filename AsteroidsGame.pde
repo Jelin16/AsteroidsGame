@@ -9,11 +9,11 @@ boolean gameOver = false;
 
 public void setup() 
 {
-  size(800,800);
-  for(int i = 0; i < sky.length; i++){
+  size(800, 800);
+  for (int i = 0; i < sky.length; i++) {
     sky[i] = new Star();
   }
-for(int i = 0; i < 30; i++){
+  for (int i = 0; i < 30; i++) {
     rock.add(new Asteroid());
   }
 }
@@ -21,57 +21,56 @@ for(int i = 0; i < 30; i++){
 public void draw() 
 {
   background(20);
-  for(int i = 0; i < sky.length; i++){
+  for (int i = 0; i < sky.length; i++) {
     sky[i].show();
   }
-  for(int i = 0; i < rock.size(); i++){
+   for(int i = 0; i < rock.size(); i++){
   rock.get(i).show();
   rock.get(i).move();
+  float d = dist((float)(ship.getXship()), (float)(ship.getYship()), (float)(rock.get(i).getX()), (float)(rock.get(i).getY()));
+  if(d < 12){
+    rock.remove(i);
+    rock.add(new Asteroid());
+    }
   }
   ship.show();
   ship.move();
-  if(wPressed == true){
+  if (wPressed == true) {
     ship.accelerate(.08);
   }
-  if(aPressed == true){
+  if (aPressed == true) {
     ship.turn(-5);
   }
-  if(sPressed == true){
+  if (sPressed == true) {
     ship.accelerate(-.08);
   }
-  if(dPressed == true){
+  if (dPressed == true) {
     ship.turn(5);
   }
 }
-public void keyPressed(){
-  if(key == 'w'){
+public void keyPressed() {
+  if (key == 'w') {
     wPressed = true;
-  }
-  else if(key == 'a'){
+  } else if (key == 'a') {
     aPressed = true;
-  }
-  else if(key == 's'){
+  } else if (key == 's') {
     sPressed = true;
-  }
-  else if(key == 'd'){
+  } else if (key == 'd') {
     dPressed = true;
   }
-  if(key == 'h'){
+  if (key == 'h') {
     ship.hyperspace();
   }
 }
 
-void keyReleased(){
-    if(key == 'w'){
+void keyReleased() {
+  if (key == 'w') {
     wPressed = false;
-  }
-  else if(key == 'a'){
+  } else if (key == 'a') {
     aPressed = false;
-  }
-  else if(key == 's'){
+  } else if (key == 's') {
     sPressed = false;
-  }
-  else if(key == 'd'){
+  } else if (key == 'd') {
     dPressed = false;
   }
 }
